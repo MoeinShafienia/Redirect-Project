@@ -23,7 +23,7 @@ namespace Redirecting.Controllers
         public IActionResult Get(string domainName, string domain)
         {
             string url = Request.Path.ToString().Substring(1).Replace("/", ".");
-            return Redirect(url);
+            return Redirect("https://" + url);
         }
     }
 }
