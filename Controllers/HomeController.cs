@@ -19,10 +19,10 @@ namespace Redirecting.Controllers
             _logger = logger;
         }
 
-        [Route("www/{a=a}/{b=b}")]
-        public IActionResult Get(string a, string b)
+        [Route("www/{DomainName=DomainName}/{Domain=Domain}")]
+        public IActionResult Get(string domainName, string domain)
         {
-            string url = "https://www." + a + "." + b;
+            string url = "https://www." + domainName + "." + domain;
             Uri urlCheck = new Uri(url);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlCheck);
             request.Timeout = 15000;
@@ -41,12 +41,6 @@ namespace Redirecting.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
